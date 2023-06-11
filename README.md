@@ -1,2 +1,2 @@
-# C---Bank-Management-System
-C programming project
+# C- Bank_Management_System
+C programming project output will on Terminal.
