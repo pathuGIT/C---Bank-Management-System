@@ -13,8 +13,8 @@ struct Customer{
 };
 
 int login();
-int Get_datafun();
-int check_valuefun();
+int Get_data();
+int check_value();
 int List_customers();
 int delete_acc();
 int transfer();
@@ -22,7 +22,7 @@ int deposite();
 int withdraw();
 int update();
 int copy_valueErr(int number);
-int fun(){
+int menu(){
 	system("clear");
 	int n;
 	int choice;
@@ -56,13 +56,33 @@ int fun(){
 		
 		if(n == 0){
 			system("clear");
-			printf("\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t~THANK YOU~\n\n\n\n\n\n\n\n\n\n\n\n");
+			printf("\n\t\t\t\t\t _______________________________________________________________________ ");
+			printf("\n\t\t\t\t\t|  ___________________________________________________________________  |");
+			printf("\n\t\t\t\t\t| |                                                                   | |");
+			printf("\n\t\t\t\t\t| |                                                                   | |");
+			printf("\n\t\t\t\t\t| | ++++++++++++  +++    +++       ++++       +++++   +-+  +-+   +--+ | |");
+			printf("\n\t\t\t\t\t| | +++++--+++++  +-+    +-+      +-++-+      +-++-+  +-+  +-+  +-+   | |");
+			printf("\n\t\t\t\t\t| |     +--+      +-+----+-+     +-+--+-+     +-+ +-+ +-+  +-+++-+    | |");
+			printf("\n\t\t\t\t\t| |     +--+      +-+----+-+    +-+----+-+    +-+  +-++-+  +-+++-+    | |");
+			printf("\n\t\t\t\t\t| |     +--+      +-+    +-+   +-+      +-+   +-+   +-+-+  +-+  +-+   | |");
+			printf("\n\t\t\t\t\t| |     +--+      +-+    +-+  +-+        +-+  +-+    ++++  +-+   +--+ | |");
+			printf("\n\t\t\t\t\t| |                                                                   | |");
+			printf("\n\t\t\t\t\t| |                     +-+  +-+   +++++   +-+  +-+                   | |");
+			printf("\n\t\t\t\t\t| |                      +-++-+   +-+ +-+  +-+  +-+                   | |");
+			printf("\n\t\t\t\t\t| |                       +--+    +-+ +-+  +-+  +-+                   | |");
+			printf("\n\t\t\t\t\t| |                       +--+    +-+ +-+  +-+  +-+                   | |");
+			printf("\n\t\t\t\t\t| |                       +--+     +++++    ++++++                    | |");
+			printf("\n\t\t\t\t\t| |                                                                   | |");
+			printf("\n\t\t\t\t\t| |                           FOR USING BMS!                          | |");
+			printf("\n\t\t\t\t\t| |                                                                   | |");
+			printf("\n\t\t\t\t\t| |___________________________________________________________________| |");
+			printf("\n\t\t\t\t\t|_______________________________________________________________________|\n");
 			exit(0);
 			break;
 		}else{
 			switch(n){
 				case 1:
-					Get_datafun();
+					Get_data();
 					break;
 				case 2:
 					// transaction();
@@ -88,7 +108,7 @@ int fun(){
 					break;
 
 				case 3:
-					check_valuefun();
+					check_value();
 					break;
 				case 4:
 					List_customers();
@@ -115,20 +135,17 @@ int main(){
 	login();
 	
 	
-	fun();
+	menu();
 	return 0;
 }
 
 //Create A New Account for User
-int Get_datafun(){
-	printf("\n\n\n\n\n\n");
-
+int Get_data(){
 
 	system("clear");
 
-	printf("\n\tNEW CUSTOMER ADDING");
+	printf("\n\n\n\n\tNEW CUSTOMER ADDING");
 	printf("\n\t________________________________________\n\n");
-//~~~~~~~~~~~~~~~~~~~~~~~~~~ Call to structure ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	struct Customer std1;
 	FILE *file;
 	int i,q,check,exit;
@@ -141,8 +158,7 @@ int Get_datafun(){
 		if(x != 1){
 			
 			std1.account = q;
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~ Take user inputs store them in structure ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~			
+			
 			printf("\n\tEnter Name : ");
 			scanf(" %[^\n]%*c",std1.name);
 
@@ -161,6 +177,7 @@ int Get_datafun(){
 			printf("\n\tEnter Amount : ");
 			scanf("%d",&std1.amount);
 
+			//Take user confirm to save this account
 			printf("\n\t________________________________________\n\n");
 			printf("\t[1].YES\n");
 			printf("\t[0].NO\n\n");
@@ -168,15 +185,14 @@ int Get_datafun(){
 			scanf("%d",&check);
 			printf("\t________________________________________\n");
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~ Write structure into external file ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			if(check== 1){
 				fwrite(&std1, sizeof(std1),1,file);
 				fclose(file);
-				printf("\tACCOUNT CREATED SUCCESSFULLY !\n\n");
+				printf("\n\tACCOUNT CREATED SUCCESSFULLY!!\n");
 				
 			}else{
 				fclose(file);
-				//fun();
+				
 			}
 			
 
@@ -184,9 +200,11 @@ int Get_datafun(){
 			printf("\tError:: This Account Number Earlier Add.!\n");
 		}
 	
-	printf("\n\tENTER ANY NUMMBER TO BACK : ");
+	printf("\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
 	scanf("%d",&exit);
 	system("clear");
+	
+	
 }
 
 //TRANSACTION
@@ -228,14 +246,14 @@ int Get_datafun(){
 
 			remove("document.txt");
 			rename("copy.txt","document.txt");
-			printf("\t\tSUCCESSFULL!! ");
-			//fun();
+			printf("\n\t\tTRANSACTION SUCCESSFUL!!\n");
+			
 		}else{
 			printf("\t\tError:: This '%d' Account Number Not Valid!\n",AccNum);
-			//fun();
+			
 		}
 
-		printf("\n\t\tENTER ANY NUMMBER TO BACK : ");
+		printf("\n\t\t\t------------------------------\n\t\t\tENTER ANY NUMBER TO BACK : ");
 		scanf("%d",&exit);
 		system("clear");
 		
@@ -271,7 +289,7 @@ int Get_datafun(){
 					if(stdD1.amount >= Amt){
 						stdD1.amount -= Amt;
 						fwrite(&stdD1,sizeof(struct Customer),1,copy);
-						printf("\t\tSUCCESSFULL!! \n");
+						printf("\n\t\tTRANSACTION SUCCESSFUL!! \n");
 					}else{
 						stdD1.amount -= 0;
 						fwrite(&stdD1,sizeof(struct Customer),1,copy);
@@ -291,23 +309,22 @@ int Get_datafun(){
 			//fun();
 		}
 		
-		printf("\n\n\t\tENTER ANY NUMMBER TO BACK : ");
+		printf("\n\t\t\t------------------------------\n\t\t\tENTER ANY NUMBER TO BACK : ");
 		scanf("%d",&exit);
 		system("clear");
 	}
 
 
 //Display Details Of Account Holder
-int check_valuefun(){
+int check_value(){
 	system("clear");
 
-	printf("\n\n\n\n\n\tCUSTOMER CHECKING\n\t--------------------\n");
+	printf("\n\n\n\n\tCUSTOMER CHECKING\n\t--------------------\n");
 	struct Customer std2;
 	FILE *file;
 	int i, Acc_no,exit;
 
 	file = fopen("document.txt","rb");
-		//fread(std2,sizeof(std2),1,file);
 
 		printf("\n\tEnter Account No. :");
 		scanf("%d",&Acc_no);
@@ -336,7 +353,7 @@ int check_valuefun(){
 		
 	fclose(file);
 
-	printf("\n\n\t\tENTER ANY NUMMBER TO BACK : ");
+	printf("\n\n\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
 	scanf("%d",&exit);
 	system("clear");
 }
@@ -347,7 +364,7 @@ int List_customers(){
 
 	system("clear");
 
-	printf("\n\n\n\tCUSTOMER LIST\n");
+	printf("\n\n\n\n\tCUSTOMER LIST\n");
 	struct Customer std2;
 	FILE *file;
 	int i, Acc_no,exit;
@@ -365,7 +382,7 @@ int List_customers(){
 
 	fclose(file);
 
-	printf("\n\tENTER ANY NUMMBER TO BACK : ");
+	printf("\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
 	scanf("%d",&exit);
 	system("clear");
 	
@@ -406,13 +423,13 @@ int delete_acc(){
 
 			remove("document.txt");
 			rename("copy.txt","document.txt");
-			printf("\t!!! RECORD DELETED. !!!\n");
+			printf("\n\t!!! RECORD DELETED. !!!\n");
 		}else{
-			printf("\tError:: This Account Number Not Found.!\n");
+			printf("\n\tError:: This Account Number Not Found.!\n");
 		}
 		
 	
-	printf("\n\tENTER ANY NUMMBER TO BACK : ");
+	printf("\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
 	scanf("%d",&exit);
 	system("clear");
 
@@ -420,73 +437,95 @@ int delete_acc(){
 int transfer(){
 	system("clear");
 
-	printf("\n\n\n\n\n\t\tMONEY TRANSFER\n\t\t--------------------\n");
-	printf("\t\t[0]EXIT\n");
+	printf("\n\n\n\n\tMONEY TRANSFER\n\t--------------------\n");
+	printf("\n\t[0]EXIT\n");
 	
 		FILE *file,*copy;
 		struct Customer stdD1;
 		int n,S,nn,exit;
 
 		
-		printf("\t\tENTER FROM ACCOUNT NUMBER: ");
+		printf("\n\tENTER FROM ACCOUNT NUMBER: ");
 		scanf("%d",&n);
-		printf("\t\tEnter Amount: ");
-		scanf("%d",&S);
-
-		if(n == 0 || S == 0){
-			fun();
-		}else{
-
-			//deposite money to account num.
-			file = fopen("document.txt","r");
-			copy = fopen("copy.txt","w");
 		
-			if(file == NULL){
-				fprintf(stderr,"\t\tCan't open file\n");
+		if (n!=0) {
+			int x = copy_valueErr(n);
+			if (x!=1){
+				printf("\n\tError:: This FROM Account Number Not Found.!\n");
+				printf("\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
+				scanf("%d",&exit);
+				menu();
+				system("clear");
 			}
-			
-			while(fread(&stdD1,sizeof(struct Customer),1,file)){
-				if(stdD1.account != n){
-					fwrite(&stdD1,sizeof(struct Customer),1,copy);
-				}else{
-					stdD1.amount -= S;
-					fwrite(&stdD1,sizeof(struct Customer),1,copy);
-				}
-			}
-			fclose(file);
-			fclose(copy);
-
-			remove("document.txt");
-			rename("copy.txt","document.txt");
-
-			//withdraw money to account num.
-			file = fopen("document.txt","r");
-			copy = fopen("copy.txt","w");
-			printf("\t\tENTER TO ACCOUNT NUMBER: ");
+			printf("\tEnter Amount: ");
+			scanf("%d",&S);
+		
+			printf("\n\tENTER TO ACCOUNT NUMBER: ");
 			scanf("%d",&nn);
-
-			if(file == NULL){
-				fprintf(stderr,"\t\tCan't open file\n");
+		
+			int y = copy_valueErr(nn);
+			if (y!=1){
+				printf("\n\tError:: This TO Account Number Not Found.!\n");
+				printf("\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
+				scanf("%d",&exit);
+				menu();
+				system("clear");
 			}
 			
-			while(fread(&stdD1,sizeof(struct Customer),1,file)){
-				if(stdD1.account != nn){
-					fwrite(&stdD1,sizeof(struct Customer),1,copy);
-				}else{
-					stdD1.amount += S;
-					fwrite(&stdD1,sizeof(struct Customer),1,copy);
-
-				}
-			}
-			fclose(file);
-			fclose(copy);
-
-			remove("document.txt");
-			rename("copy.txt","document.txt");
-			fun();
+		}else if (n == 0){
+			menu();
+			
 		}
+			
+		//deposite money to account num.
+		file = fopen("document.txt","r");
+		copy = fopen("copy.txt","w");
+		
+		if(file == NULL){
+			fprintf(stderr,"\t\tCan't open file\n");
+		}
+			
+		while(fread(&stdD1,sizeof(struct Customer),1,file)){
+			if(stdD1.account != n){
+				fwrite(&stdD1,sizeof(struct Customer),1,copy);
+			}else{
+				stdD1.amount -= S;
+				fwrite(&stdD1,sizeof(struct Customer),1,copy);
+			}
+		}
+		fclose(file);
+		fclose(copy);
 
-	printf("\n\tENTER ANY NUMMBER TO BACK : ");
+		remove("document.txt");
+		rename("copy.txt","document.txt");
+
+		//withdraw money to account num.
+		file = fopen("document.txt","r");
+		copy = fopen("copy.txt","w");
+			
+
+		if(file == NULL){
+			fprintf(stderr,"\t\tCan't open file\n");
+		}
+			
+		while(fread(&stdD1,sizeof(struct Customer),1,file)){
+			if(stdD1.account != nn){
+				fwrite(&stdD1,sizeof(struct Customer),1,copy);
+			}else{
+				stdD1.amount += S;
+				fwrite(&stdD1,sizeof(struct Customer),1,copy);
+
+			}
+		}
+		fclose(file);
+		fclose(copy);
+
+		remove("document.txt");
+		rename("copy.txt","document.txt");
+		printf("\n\tTRANSACTION SUCCESSFUL!! ");		
+		
+
+	printf("\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
 	scanf("%d",&exit);
 	system("clear");
 }
@@ -494,37 +533,34 @@ int transfer(){
 //update account
 int update(){
 	system("clear");
-	printf("\n\n\n\n\n\n\t\tUPDATE ACCOUNT\n\t\t--------------------\n");
+	printf("\n\n\n\n\tUPDATE ACCOUNT\n\t--------------------\n");
 	
 	FILE *file, *copy;
-//~~~~~~~~~~~~~~~~~~ Call to structure Customer as stdD1 and new_details ~~~~~~~~~~~~~~~~~~~~~~~~~
 	struct Customer stdD1;
 	struct Customer new_details;
 
 	file = fopen("document.txt", "r");
 	copy = fopen("copy.txt", "w");
 
-
-//~~~~~~~~~~~~~~~~~~ Get user inputs to stdD1 and new_details ~~~~~~~~~~~~~~~~~~~~~~~~~
-	printf("\t\t\t[01]Enter The Account Number To UPDATE: ");
+	printf("\t[01]Enter The Account Number To UPDATE: ");
 	scanf("%d", &new_details.account);
 	getchar();
 
 	int x = copy_valueErr(new_details.account);
 	if(x==1){
-		printf("\n\t\t\t[02]Enter Your Name To Update: ");
+		printf("\n\t[02]Enter Your Name To Update: ");
 		scanf("%29[^\n]", new_details.name);
 		getchar();
 
-		printf("\n\t\t\t[03]Enter Your Birth Day To Update: ");
+		printf("\n\t[03]Enter Your Birth Day To Update: ");
 		scanf("%29[^\n]", new_details.birth);
 		getchar();
 
-		printf("\n\t\t\t[04]Enter Your New Address To Update: ");
+		printf("\n\t[04]Enter Your New Address To Update: ");
 		scanf("%49[^\n]", new_details.address);
 		getchar();
 
-		printf("\n\t\t\t[05]Enter Your New Telephone No: ");
+		printf("\n\t[05]Enter Your New Telephone No: ");
 		scanf("%d", &new_details.telnum);
 		getchar();
 
@@ -533,13 +569,9 @@ int update(){
 			fprintf(stderr, "\t\tCan't open file\n");
 		}
 
-
-		
-		//~~~~~~~~~ Take data from externel file and store into structure ~~~~~~~~~~~~~~~
 		while (fread(&stdD1, sizeof(struct Customer), 1, file)) {
 			if (stdD1.account != new_details.account) {
 
-				//~~~~~~ Write data into externel file~~~~~~~~~~~~~~
 				fwrite(&stdD1, sizeof(struct Customer), 1, copy);
 			} else {
 
@@ -547,8 +579,7 @@ int update(){
 				strcpy(stdD1.birth, new_details.birth);
 				strcpy(stdD1.address, new_details.address);
 				stdD1.telnum = new_details.telnum;
-
-				//~~~~~~ Write data into externel file~~~~~~~~~~~~~~
+				
 				fwrite(&stdD1, sizeof(struct Customer), 1, copy);
 
 			}
@@ -558,9 +589,11 @@ int update(){
 
 		remove("document.txt");
 		rename("copy.txt", "document.txt");
+		printf("\n\tUPDATE SUCCESSFULL!!\n");
 	}else{
-		printf("\n\t\tError:: This Account Number could not find to Update\n");
+		printf("\n\tError:: This Account Number could not find to Update\n");
 	}
+	
 
 	int exit;
 	printf("\n\t\t------------------------------\n\t\tENTER ANY NUMBER TO BACK : ");
@@ -589,9 +622,10 @@ int copy_valueErr(int number){
 int login() {
 	
 	system("clear");	
-	int pass;
+	char pass[10]="1234";
+	char get_pass[10];
 	int again;
-	char buffer[100];
+	int match;
 	
 	printf("\n\n\n\n\n");
 	printf("\n\t\t\t\t\t\t**_**_**_**_**_**_**_**_**_**_**_**_**_**_**_**_**_**_**_**_**_**\n");
@@ -610,29 +644,17 @@ int login() {
 	printf("\n\t\t\t\t\t\t    =======================        =======================");
 
 	printf("\n\n\n\t\t\t\t\t\t\t\tEnter PIN number: ");
+	scanf("%s",get_pass);
 	
-
-	if (scanf("%d", &pass) == 1) {
-		if (pass==1234) {
-			fun();
-		}
-		else {
-			printf("\n\n\t\t\t\t\t\tIncorrect PIN !");
-			printf("\n\t\t\t\t\t\tEnter 1 to login again: ");
-			scanf("%d", &again);
-				if (again==1) {
-					login();
-				}
-				else {
-					login();
-				}
-		}
+	match=strcmp(pass, get_pass);
+	
+	if (match==0) {
+		menu();
 	}
 	else {
-		printf("\n\n\t\t\t\t\t\tPIN number should contain only integers !");
-		fgets(buffer, sizeof(buffer), stdin);
+		printf("\n\n\t\t\t\t\t\tIncorrect PIN !");
 		printf("\n\t\t\t\t\t\tEnter 1 to login again: ");
-		scanf("%d",&again);
+		scanf("%d", &again);
 			if (again==1) {
 				login();
 			}
@@ -640,7 +662,5 @@ int login() {
 				login();
 			}
 	}
-	
-	
-	
+		
 }
